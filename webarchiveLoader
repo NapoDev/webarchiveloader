@@ -1,0 +1,52 @@
+# Simple scrip that loads all given URLS in the url.txt (one per line) into web archive
+
+from selenium import webdriver
+import os
+
+webarchive = "http://archive.org/web/"
+
+
+textUrlId = "web_save_url" 
+submitUrlId = "web_save_button"
+file = r"C:\Users\Opt-Media SEO\Desktop\WebArchiveLoader\urls.txt"
+
+
+
+
+#takes list of URLs exported from xenu, and sets them up to be imported to 
+#web archive
+def makeList(urlFile):
+	listOfUrls = []
+	urlsFile = open(urlFile, "r+")
+	urls = urlsFile.readlines()
+	for url in urls:
+		if len(url) > 10:
+			res.append((url.replace("\n","")))
+	return listOfUrls
+
+#Adds a url to web archive, once the page is fully loaded it returns true
+#returns False in case something when wrong (or could not read the result)
+def loadUrl(url, browser):
+	res = False
+	#!!!
+	return res
+	
+	
+def loadAllUrls():
+	list = makeList(file)
+	#firefox = webdriver.Firefox()
+	#firefox.get(webarchive)
+
+	for url in list:
+
+def textSendToarchive():
+	webarchive = "http://archive.org/web/"
+	textUrlId = "web_save_url" 
+	submitUrlId = "web_save_button"
+	
+	
+	
+	
+	
+	
+	
