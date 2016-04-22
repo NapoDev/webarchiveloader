@@ -1,14 +1,16 @@
 # Simple scrip that loads all given URLS in the url.txt (one per line) into web archive
 
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 import os
+import time
 
 webarchive = "http://archive.org/web/"
 
 
 textUrlId = "web_save_url" 
 submitUrlId = "web_save_button"
-file = r"C:\Users\Opt-Media SEO\Desktop\WebArchiveLoader\urls.txt"
+file = "urls.txt"
 
 
 
@@ -21,32 +23,35 @@ def makeList(urlFile):
 	urls = urlsFile.readlines()
 	for url in urls:
 		if len(url) > 10:
-			res.append((url.replace("\n","")))
+			listOfUrls.append((url.replace("\n","")))
 	return listOfUrls
 
-#Adds a url to web archive, once the page is fully loaded it returns true
-#returns False in case something when wrong (or could not read the result)
-def loadUrl(url, browser):
-	res = False
-	#!!!
-	return res
-	
+
+def textSendToArchive(url, textId,submitId,firefox):
+	try:
+		firefox.get(webarchive)
+		submit = firefox.find_element_by_id(submitId)
+		textArea = firefox.find_element_by_id(textId)
+		textArea.send_keys(url)
+		submit.click()
+		return True
+	except:
+		return False
 	
 def loadAllUrls():
 	list = makeList(file)
-	#firefox = webdriver.Firefox()
-	#firefox.get(webarchive)
-
+	firefox = webdriver.Firefox()
+	counter = 1
 	for url in list:
-
-def textSendToarchive():
-	webarchive = "http://archive.org/web/"
-	textUrlId = "web_save_url" 
-	submitUrlId = "web_save_button"
-	
-	
-	
-	
-	
-	
-	
+		if(textSendToArchive(url,"web_save_url","web_save_button", firefox)):
+			print(str(counter) + ": Added to webarchive")
+			counter += 1
+			time.sleep(15)
+		elif(textSendToArchive(url,"web_save_url","web_save_button", firefox)):
+			print(str(counter) + ": Added to webarchive")
+			counter += 1
+			time.sleep(15)
+		else:
+			print(str(counter) + ": Not to webarchive")
+			counter += 1
+loadAllUrls()
