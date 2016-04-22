@@ -1,3 +1,5 @@
+#DO THE FUCK YOU WANT COPYRIGH
+#	AKA COPYLEFT
 # Simple scrip that loads all given URLS in the url.txt (one per line) into web archive
 
 from selenium import webdriver
